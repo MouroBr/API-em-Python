@@ -1,8 +1,9 @@
 import json
+from json import JSONEncoder
 
 class Book:
     def __init__(self, id, autor, titulo, anoPublicacao, pais):
-        self.id = id
+        self.id = str(id)
         self.autor = autor
         self.titulo = titulo
         self.anoPublicacao = anoPublicacao
@@ -10,8 +11,7 @@ class Book:
         self.leitura = 0
 
     def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-            sort_keys=True, indent=4)
+       return json.loads(json.dumps(self, cls=BookEncoder, indent=4))
     
     def emprestimo(self):
         self.leitura = self.leitura + 1 
