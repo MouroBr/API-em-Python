@@ -11,7 +11,7 @@ class Book:
         self.leitura = 0
 
     def toJSON(self):
-       return json.loads(json.dumps(self, cls=Book.Encoder, indent=4))
+       return json.loads(json.dumps(self, cls=json.BookEncoder, indent=4))
     
     def emprestimo(self):
         self.leitura = self.leitura + 1 
